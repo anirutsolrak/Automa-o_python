@@ -1,0 +1,45 @@
+# ============================================
+# CONFIGURAÇÕES DO PLAUD
+# ============================================
+
+# Credenciais de login (OBRIGATÓRIO)
+PLAUD_EMAIL=seu_email@exemplo.com
+PLAUD_SENHA=sua_senha_aqui
+
+# ============================================
+# OPENAI (para geração de ATA)
+# ============================================
+
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxx
+
+# ============================================
+# GOOGLE GEMINI (alternativa)
+# ============================================
+
+GEMINI_API_KEY=AIzaSyxxxxxxxxxxxxx
+
+# ============================================
+# EMAIL (para envio da ATA)
+# ============================================
+
+EMAIL_DESTINATARIO=destinatario@exemplo.com
+EMAIL_REMETENTE=remetente@gmail.com
+EMAIL_SENHA=senha_app_gmail
+
+# ============================================
+# SMB/CIFS (montagem de pasta compartilhada)
+# ============================================
+
+SMB_SERVIDOR=10.0.0.10
+SMB_COMPARTILHAMENTO=Arquivos
+SMB_USUARIO=svc_automacao
+SMB_SENHA=<SENHA_SMB>
+SMB_PONTO_MONTAGEM=/mnt/cliente
+
+# ============================================
+# CAMINHOS LOCAIS
+# ============================================
+
+CAMINHO_EDITAL_LOCAL=./editais
+CAMINHO_SAIDA_DOCX=./saida
+CAMINHO_EDITAL_SMB=/mnt/cliente/Editais

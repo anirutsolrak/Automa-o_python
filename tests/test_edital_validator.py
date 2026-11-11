@@ -1,4 +1,4 @@
-"""Testes do validador de extração contra os editais reais em editais_local/."""
+"""Testes do validador de extração contra os editais fictícios de tests/fixtures/editais/."""
 
 import os
 import pytest
@@ -14,7 +14,7 @@ def _carregar(path):
 
 @pytest.fixture
 def alfa_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "Edital_Alfa.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "Edital_Alfa.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p
@@ -22,7 +22,7 @@ def alfa_path():
 
 @pytest.fixture
 def theta_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "lote_cliente", "17.03.2026 Theta.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "lote_cliente", "17.03.2026 Theta.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p
@@ -30,7 +30,7 @@ def theta_path():
 
 @pytest.fixture
 def gama_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "lote_cliente", "08.04.2026 Gama.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "lote_cliente", "08.04.2026 Gama.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p
@@ -38,7 +38,7 @@ def gama_path():
 
 @pytest.fixture
 def delta_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "lote_cliente", "29.04.2026 Delta.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "lote_cliente", "29.04.2026 Delta.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p
@@ -46,7 +46,7 @@ def delta_path():
 
 @pytest.fixture
 def fm019_ago_age_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "lote_cliente", "FM-019_AGO_AGE_19.05.2026.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "lote_cliente", "FM-019_AGO_AGE_19.05.2026.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p
@@ -54,7 +54,7 @@ def fm019_ago_age_path():
 
 @pytest.fixture
 def iota_path():
-    p = os.path.join(os.path.dirname(__file__), "..", "editais_local", "lote_cliente", "20.05.2026 Iota.docx")
+    p = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "lote_cliente", "20.05.2026 Iota.docx")
     if not os.path.exists(p):
         pytest.skip(f"Faltando: {p}")
     return p

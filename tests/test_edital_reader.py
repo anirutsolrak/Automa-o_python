@@ -6,7 +6,7 @@ import pytest
 
 @pytest.fixture
 def alfa_edital_path():
-    path = os.path.join(os.path.dirname(__file__), "..", "editais_local", "Edital_Alfa.docx")
+    path = os.path.join(os.path.dirname(__file__), "fixtures", "editais", "Edital_Alfa.docx")
     if not os.path.exists(path):
         pytest.skip(f"Edital de teste não encontrado em {path}")
     return path

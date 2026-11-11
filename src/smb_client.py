@@ -44,14 +44,11 @@ class SMBClient:
     def _unc(self) -> str:
         return f"//{self.servidor}/{self.share}"
 
-    @property
-    def _auth(self) -> str:
-        return f"{self.usuario}%{self.senha}"
-
-    # Executa um comando interno do smbclient (ls/get/put/...) via flag -c,
-    # já autenticando com usuario%senha na URL do share.
+    # Executa um comando interno do smbclient (ls/get/put/...) via flag -c.
+    # A senha vai pela variável PASSWD (lida pelo smbclient), não pela linha de
+    # comando: argumentos de processo aparecem no `ps` para qualquer usuário.
     def _run(self, cmd_smb: str, timeout: int = 60) -> subprocess.CompletedProcess:
-        args = [self._bin, self._unc, "-U", self._auth, "-c", cmd_smb]
+        args = [self._bin, self._unc, "-U", self.usuario, "-c", cmd_smb]
         logger.debug("smbclient cmd: %s", cmd_smb)
         return subprocess.run(
             args,
@@ -61,6 +58,7 @@ class SMBClient:
             errors="replace",
             timeout=timeout,
             check=False,
+            env={**os.environ, "PASSWD": self.senha},
         )
 
     # ───── Listar ───────────────────────────────────────────────────────

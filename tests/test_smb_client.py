@@ -112,8 +112,14 @@ def test_conectividade_ok():
         assert cli.conectividade_ok() is False
 
 
-def test_auth_string_formato():
+def test_senha_nao_vai_na_linha_de_comando():
+    """A linha de comando aparece no `ps` para qualquer usuário; a senha vai por PASSWD."""
     from src.smb_client import SMBClient
     cli = SMBClient("srv", "Arquivos", "svc_automacao", "<SENHA_SMB>")
-    assert cli._auth == "svc_automacao%<SENHA_SMB>"
     assert cli._unc == "//srv/Arquivos"
+    with patch("src.smb_client.subprocess.run", return_value=_mock_run(0, "")) as m:
+        cli.conectividade_ok()
+    args, kwargs = m.call_args
+    assert not any("<SENHA_SMB>" in a for a in args[0])
+    assert args[0][args[0].index("-U") + 1] == "svc_automacao"
+    assert kwargs["env"]["PASSWD"] == "<SENHA_SMB>"

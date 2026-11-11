@@ -563,12 +563,13 @@ Nada mais havendo a tratar, a reunião foi encerrada às [hora por extenso], lav
     # de levantar, pra o processar() poder cair pro GPT.
     def _processar_com_gemini(self, prompt: str) -> Dict:
         try:
-            import google.generativeai as genai
-            
-            genai.configure(api_key=Config.GEMINI_API_KEY)
-            model = genai.GenerativeModel('gemini-1.5-flash')
-            
-            response = model.generate_content(prompt)
+            from google import genai
+
+            # Alias que o Google atualiza com aviso prévio: um modelo fixo
+            # (o antigo "gemini-1.5-flash") é desligado e derruba o fallback.
+            modelo = "gemini-flash-latest"
+            client = genai.Client(api_key=Config.GEMINI_API_KEY)
+            response = client.models.generate_content(model=modelo, contents=prompt)
             ata_texto = response.text.strip()
             
             logger.info(f"[OK] ATA gerada com Gemini ({len(ata_texto)} caracteres)")
@@ -576,7 +577,7 @@ Nada mais havendo a tratar, a reunião foi encerrada às [hora por extenso], lav
             return {
                 "sucesso": True,
                 "ata": ata_texto,
-                "modelo_usado": "gemini-1.5-flash",
+                "modelo_usado": modelo,
                 "mensagem": "ATA gerada com sucesso"
             }
             
